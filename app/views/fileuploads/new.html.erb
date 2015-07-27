@@ -1,0 +1,13 @@
+<%= form_for @fileupload, :url => user_fileuploads_path(params[:user_id]) do |f| %>
+
+  <%= render 'error_form' %>
+
+  <p>
+    <%= f.file_field :uploaded_file %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

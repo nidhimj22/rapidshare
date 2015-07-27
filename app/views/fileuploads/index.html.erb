@@ -1,0 +1,38 @@
+<script type="text/javascript">
+function toggle_upload(){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", "<%= new_user_fileupload_path(params[:user_id]) %>", false );
+  xmlHttp.send( null );
+  document.getElementById("upload div").innerHTML = xmlHttp.responseText;
+}
+</script>
+
+<p>
+  <strong>User Name:</strong>
+  <%= @user.user_name %>
+</p>
+<br />
+<h1>Files</h1>
+<table>
+  <tr>
+    <th>Filename</th>
+  </tr>
+
+  <% @fileuploads.each do |fileupload| %>
+    <tr>
+      <td><%= fileupload.file_name %></td>
+      <td><%= link_to 'Download', download_user_fileupload_path(params[:user_id], fileupload.id.to_s) %></td>
+      <td><%= link_to 'Destroy', user_fileupload_path(params[:user_id], fileupload), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<button onclick="toggle_upload()">Upload new file</button>
+
+<div id="upload div">
+</div>
+
+<br />
+<%= link_to "Logout", logout_path(params[:user_id]) %> <br />

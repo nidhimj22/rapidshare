@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql
+  database: user_rapid_no_gems
+  username: root
+  password: root
+  host: localhost
+  port:
+
+development:
+  <<: *default
+  database: development_user_rapid_no_gems
+
+test:
+  <<: *default
+  database: test_user_rapid_no_gems
+
+production:
+  <<: *default
+  database: production_user_rapid_no_gems
